@@ -135,7 +135,6 @@ public class StandaloneMain
         mHatchLefthHookPosition += mHatchHookSpeed *= 1;
         mHatchRighthHookPosition += mHatchHookSpeed *= 1.2;
 
-        System.out.println(mElevatorHeight + ", " + mCargoAngle + ", " + mHatchAngle); // NOPMD
         mRobotController.setElevatorData(mElevatorHeight, mElevatorSpeed, mElevatorGoal);
         mRobotController.setCargoData(mCargoAngle, mCargoSpeed, .5, mCargoGoalAngle);
         mRobotController.setHatchAquisitionData(mHatchAngle, mHatchArmSpeed, mHatchGoalAngle, mHatchHookSpeed, mHatchLefthHookPosition,

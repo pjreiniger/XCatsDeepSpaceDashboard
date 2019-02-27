@@ -34,11 +34,6 @@ public class RobotWidget extends ComplexAnnotatedWidget<RobotData>
         {
             final Map<String, Object> changes = newData.changesFrom(oldData);
 
-            if (!changes.isEmpty())
-            {
-                System.out.println(changes);
-            }
-
             if (ElevatorData.hasChanged(changes))
             {
                 updateElevator(newData.getElevator());

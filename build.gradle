@@ -2,6 +2,7 @@ plugins {
     id "java"
     id "idea"
     id "eclipse"
+    id "maven-publish"
 }
 
 repositories {
@@ -13,8 +14,10 @@ repositories {
     }
 }
 
-ext.getShuffleboardVersion = {
-    return "2019.3.1" 
+ext {
+    shuffleboard_version = "2019.3.1";
+    publishing_version = "2019.1.0.0";
+    publishing_url = "${rootDir}/build/publishing"
 }
 
 
@@ -31,11 +34,26 @@ dependencies {
     compile "org.openjfx:javafx-fxml:11:win"
     
     
-    compile 'edu.wpi.first.shuffleboard:shuffleboard:' + getShuffleboardVersion()
-    compile 'edu.wpi.first.shuffleboard:api:' + getShuffleboardVersion()
-    compile 'edu.wpi.first.shuffleboard.plugin:networktables:' + getShuffleboardVersion()
-    compile 'edu.wpi.first.shuffleboard:api:' + getShuffleboardVersion()
-    compile 'edu.wpi.first.shuffleboard.plugin:networktables:' + getShuffleboardVersion()
+    compile 'edu.wpi.first.shuffleboard:shuffleboard:' + shuffleboard_version
+    compile 'edu.wpi.first.shuffleboard:api:' + shuffleboard_version
+    compile 'edu.wpi.first.shuffleboard.plugin:networktables:' + shuffleboard_version
+    compile 'edu.wpi.first.shuffleboard:api:' + shuffleboard_version
+    compile 'edu.wpi.first.shuffleboard.plugin:networktables:' + shuffleboard_version
 }
 
 apply from: "styleguide.gradle"
+
+publishing {
+    repositories {
+        maven {
+            url publishing_url
+        }
+    }
+    publications {
+        application(MavenPublication) {
+            groupId = "org.xcats.deep_space.sd_widgets"
+            artifactId = "RobotWidget"
+            version = publishing_version
+        }
+    }
+}

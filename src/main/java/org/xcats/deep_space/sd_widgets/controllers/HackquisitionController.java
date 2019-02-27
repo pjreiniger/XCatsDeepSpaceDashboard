@@ -14,17 +14,16 @@ import javafx.scene.transform.Scale;
 public class HackquisitionController
 {
     @FXML
-    private double TRACK_WIDTH;
+    private double mTrackWidth;
 
     @FXML
-    private double TRACK_HEIGHT;
+    private double mTrackHeight;
 
     @FXML
     private Pane mPane;
 
     @FXML
     private Group mGroup;
-
 
     @FXML
     private Rectangle mBoundingBox;
@@ -38,14 +37,14 @@ public class HackquisitionController
     @FXML
     public void initialize()
     {
-        final double MAX_WIDTH = TRACK_WIDTH;
-        final double MAX_HEIGHT = TRACK_HEIGHT;
+        final double maxWidth = mTrackWidth;
+        final double maxHeight = mTrackHeight;
 
-        double minWidthMultiplier = 10;
-        mPane.setMinHeight(MAX_HEIGHT * minWidthMultiplier);
-        mPane.setMinWidth(MAX_WIDTH * minWidthMultiplier);
+        double minWidthMultiplier = 4;
+        mPane.setMinHeight(maxHeight * minWidthMultiplier);
+        mPane.setMinWidth(maxWidth * minWidthMultiplier);
 
-        DoubleBinding scaleBinding = Bindings.createDoubleBinding(() -> Math.min(mPane.getWidth() / MAX_WIDTH, mPane.getHeight() / MAX_HEIGHT),
+        DoubleBinding scaleBinding = Bindings.createDoubleBinding(() -> Math.min(mPane.getWidth() / maxWidth, mPane.getHeight() / maxHeight),
                 mPane.widthProperty(), mPane.heightProperty());
 
         Scale scale = new Scale();
@@ -67,13 +66,13 @@ public class HackquisitionController
         mRightHook.setStrokeWidth(.1);
     }
 
-    public void setHatchData(double leftSpeed, double leftPosition, double rightSpeed, double rightPosition)
+    public void setHatchData(double aLeftSpeed, double aLeftPosition, double aRightSpeed, double aRightPosition)
     {
-        mLeftHook.setFill(Utils.getMotorColor(leftSpeed));
-        mLeftHook.setX(leftPosition);
+        mLeftHook.setFill(Utils.getMotorColor(aLeftSpeed));
+        mLeftHook.setX(aLeftPosition);
 
-        mRightHook.setFill(Utils.getMotorColor(rightSpeed));
-        mRightHook.setX(rightPosition);
+        mRightHook.setFill(Utils.getMotorColor(aRightSpeed));
+        mRightHook.setX(aRightPosition);
     }
 
 }

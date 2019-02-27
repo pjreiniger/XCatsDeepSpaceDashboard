@@ -1,27 +1,14 @@
 package org.xcats.deep_space.sd_widgets.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
 
 public class RobotDisplayController
 {
-    @FXML
-    private VBox mPane;
-
     @FXML
     private SuperStructureController mSuperstructureController;
 
     @FXML
     private HackquisitionController mHackquisitionController;
-
-    @FXML
-    public void initialize()
-    {
-        VBox.setVgrow(mPane, Priority.ALWAYS);
-    }
-
-
 
     public void setElevatorData(double aHeight, double aMotorSpeed, Double aGoalHeight)
     {
@@ -33,11 +20,11 @@ public class RobotDisplayController
         mSuperstructureController.setCargoData(aAngle, aArmMotorSpeed, aRollerSpeed, aGoalAngle);
     }
 
-    public void setHatchAquisitionData(double aAngle, double aMotorSpeed, Double aGoalAngle, double leftHookSpeed, double leftHookPosition,
-            double rightHookSpeed, double rightHookPosition)
+    public void setHatchAquisitionData(double aAngle, double aMotorSpeed, Double aGoalAngle, double aLeftHookSpeed, double aLeftHookPosition,
+            double aRightHookSpeed, double aRightHookPosition)
     {
         mSuperstructureController.setHatchAquisitionData(aAngle, aMotorSpeed, aGoalAngle);
-        mHackquisitionController.setHatchData(leftHookSpeed, leftHookPosition, rightHookSpeed, rightHookPosition);
+        mHackquisitionController.setHatchData(aLeftHookSpeed, aLeftHookPosition, aRightHookSpeed, aRightHookPosition);
     }
 
 }

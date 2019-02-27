@@ -8,18 +8,18 @@
 
 <Pane fx:id="mPane" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.xcats.deep_space.sd_widgets.controllers.HackquisitionController">
     <fx:define>
-        <Double fx:id="TRACK_WIDTH"  fx:value="24"/>
-        <Double fx:id="TRACK_HEIGHT"  fx:value="3"/>
-        <Double fx:id="HOOK_WIDTH"  fx:value="2"/>
-        <Double fx:id="HOOK_HEIGHT"  fx:value="3"/>
+        <Double fx:id="mTrackWidth"  fx:value="24"/>
+        <Double fx:id="mTrackHeight"  fx:value="3"/>
+        <Double fx:id="mHookWidth"  fx:value="2"/>
+        <Double fx:id="mHookHeight"  fx:value="3"/>
     </fx:define>
     
     <children>
         <Group fx:id="mGroup">
             <children>
-                <Rectangle fx:id="mBoundingBox" x="0" y="0" width="$TRACK_WIDTH" height="$TRACK_HEIGHT" />
-                <Rectangle fx:id="mRightHook" x="$HOOK_WIDTH" y="0" width="$HOOK_WIDTH" height="$HOOK_HEIGHT" />
-                <Rectangle fx:id="mLeftHook"  x="0"           y="0" width="$HOOK_WIDTH" height="$HOOK_HEIGHT" />
+                <Rectangle fx:id="mBoundingBox" x="0" y="0" width="$mTrackWidth" height="$mTrackHeight" />
+                <Rectangle fx:id="mRightHook" x="$mHookWidth" y="0" width="$mHookWidth" height="$mHookHeight" />
+                <Rectangle fx:id="mLeftHook"  x="0"           y="0" width="$mHookWidth" height="$mHookHeight" />
             </children>
         </Group>
     </children>
