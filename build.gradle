@@ -1,0 +1,41 @@
+plugins {
+    id "java"
+    id "idea"
+    id "eclipse"
+}
+
+repositories {
+    mavenCentral()
+    
+    maven {
+        name = "WPI"
+        url = "http://first.wpi.edu/FRC/roborio/maven/release"
+    }
+}
+
+ext.getShuffleboardVersion = {
+    return "2019.3.1" 
+}
+
+
+task install_plugin(type: Copy) {
+    from(tasks.named("jar"))
+    into("${System.getProperty("user.home")}/Shuffleboard/plugins")
+}
+
+dependencies {
+    
+    compile "org.openjfx:javafx-base:11:win"
+    compile "org.openjfx:javafx-graphics:11:win"
+    compile "org.openjfx:javafx-controls:11:win"
+    compile "org.openjfx:javafx-fxml:11:win"
+    
+    
+    compile 'edu.wpi.first.shuffleboard:shuffleboard:' + getShuffleboardVersion()
+    compile 'edu.wpi.first.shuffleboard:api:' + getShuffleboardVersion()
+    compile 'edu.wpi.first.shuffleboard.plugin:networktables:' + getShuffleboardVersion()
+    compile 'edu.wpi.first.shuffleboard:api:' + getShuffleboardVersion()
+    compile 'edu.wpi.first.shuffleboard.plugin:networktables:' + getShuffleboardVersion()
+}
+
+apply from: "styleguide.gradle"

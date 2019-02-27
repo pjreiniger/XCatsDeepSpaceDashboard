@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.Circle?>
+<?import java.lang.Double?>
+
+<VBox fx:id="mPane" 
+      xmlns="http://javafx.com/javafx/9" 
+      xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="org.xcats.deep_space.sd_widgets.controllers.RobotDisplayController"
+      maxHeight="Infinity">
+
+    
+    <children>
+    <fx:include source="super_structure_display.fxml" fx:id="mSuperstructure" />
+    <fx:include source="hackquisition_display.fxml" fx:id="mHackquisition" />
+    </children>
+</VBox>

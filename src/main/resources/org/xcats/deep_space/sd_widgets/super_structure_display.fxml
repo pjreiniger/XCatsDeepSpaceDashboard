@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.Circle?>
+<?import java.lang.Double?>
+
+<Pane fx:id="mPane" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.xcats.deep_space.sd_widgets.controllers.SuperStructureController">
+    <fx:define>
+        <Double fx:id="ELEVATOR_MAX_HEIGHT"  fx:value="70.0"/>
+        <Double fx:id="ELEVATOR_WIDTH"  fx:value="3"/>
+        
+        <Double fx:id="CARGO_HEIGHT"  fx:value="3.0"/>
+        <Double fx:id="CARGO_WIDTH"  fx:value="20.0"/>
+        <Double fx:id="CARGO_ROLLER_RADIUS"  fx:value="1.5"/>
+        <Double fx:id="CARGO_ELEVATOR_OFFSET"  fx:value="20"/>
+        
+        <Double fx:id="HATCH_HEIGHT"  fx:value="3.0"/>
+        <Double fx:id="HATCH_WIDTH"  fx:value="5.0"/>
+        <Double fx:id="HATCH_ELEVATOR_OFFSET"  fx:value="17"/>
+    </fx:define>
+    
+    <children>
+        <Group fx:id="mGroup">
+            <children>
+                <Rectangle fx:id="mElevator" x="0" y="0" width="$ELEVATOR_WIDTH" height="$ELEVATOR_MAX_HEIGHT" />
+                <Rectangle fx:id="mElevatorGoal" x="0" y="0" width="$ELEVATOR_WIDTH" height="$ELEVATOR_MAX_HEIGHT"/>
+                <Rectangle fx:id="mCargoAquisition" x="$ELEVATOR_WIDTH" y="0" width="$CARGO_WIDTH" height="$CARGO_HEIGHT"/>
+                <Rectangle fx:id="mCargoAquisitionGoal" x="$ELEVATOR_WIDTH" y="0" width="$CARGO_WIDTH" height="$CARGO_HEIGHT"/>
+                <Rectangle fx:id="mHatchAquisition" x="$ELEVATOR_WIDTH" y="0" width="$HATCH_WIDTH" height="$HATCH_HEIGHT"/>
+                <Rectangle fx:id="mHatchAquisitionGoal"  x="$ELEVATOR_WIDTH" y="0" width="$HATCH_WIDTH" height="$HATCH_HEIGHT"/>
+                <Circle fx:id="mCargoRollers" radius="$CARGO_ROLLER_RADIUS" />
+            </children>
+        </Group>
+    </children>
+</Pane>
