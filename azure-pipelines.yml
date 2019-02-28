@@ -26,6 +26,11 @@ jobs:
        rootFolderOrFile: build/publishing
 
    - task: PublishBuildArtifacts@1
+     displayName: 'Publish Artifact: maven repo'
+     inputs:
+       ArtifactName: 'LinuxMaven'
+
+   - task: PublishBuildArtifacts@1
      displayName: 'Publish Artifact: Plugin'
      inputs:
        PathtoPublish: 'build/libs'
