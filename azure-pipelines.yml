@@ -28,7 +28,8 @@ jobs:
        
    - task: CopyFiles@2
      inputs:
-       contents: 'build/libs/*.jar'
+       sourceFolder: 'build/libs'
+       contents: '*.jar'
        targetFolder: $(Build.ArtifactStagingDirectory)
 
    - task: PublishBuildArtifacts@1
@@ -37,6 +38,19 @@ jobs:
        pathtoPublish: $(Build.ArtifactStagingDirectory)
        ArtifactName: 'artifacts'
        
+   - script: |
+      echo Write your commands here
+      
+      echo Use the environment variables input below to pass secret variables to this script
+      
+      dir
+      dir $(Build.ArtifactStagingDirectory)
+      dir "SourceAlias"
+      dir "SourceAlias\LinuxMaven"
+      dir "SourceAlias\Plugin"
+      dir
+   
+  displayName: 'Command Line Script'
    #- task: GitHubRelease@0
    #  displayName: 'GitHub release (create)'
    #  inputs:
