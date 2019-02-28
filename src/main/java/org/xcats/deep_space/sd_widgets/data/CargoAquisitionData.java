@@ -71,17 +71,17 @@ public class CargoAquisitionData extends ComplexData<CargoAquisitionData>
         return map;
     }
 
-    public double getAngle()
+    public double getArmAngle()
     {
         return mArmAngle;
     }
 
-    public double getMotorSpeed()
+    public double getArmSpeed()
     {
         return mArmSpeed;
     }
 
-    public double getCargoSpeed()
+    public double getRollerSpeed()
     {
         return mCargoSpeed;
     }
@@ -95,7 +95,8 @@ public class CargoAquisitionData extends ComplexData<CargoAquisitionData>
     {
         return aChanges.containsKey(SmartDashboardNames.CARGO_TABLE_NAME + "/" + SmartDashboardNames.CARGO_SPEED_NAME)
                 || aChanges.containsKey(SmartDashboardNames.CARGO_TABLE_NAME + "/" + SmartDashboardNames.CARGO_ANGLE_NAME)
-                || aChanges.containsKey(SmartDashboardNames.CARGO_TABLE_NAME + "/" + SmartDashboardNames.CARGO_GOAL_ANGLE_NAME);
+                || aChanges.containsKey(SmartDashboardNames.CARGO_TABLE_NAME + "/" + SmartDashboardNames.CARGO_GOAL_ANGLE_NAME)
+                || aChanges.containsKey(SmartDashboardNames.CARGO_TABLE_NAME + "/" + SmartDashboardNames.CARGO_ROLLERS_NAME);
     }
 
 }

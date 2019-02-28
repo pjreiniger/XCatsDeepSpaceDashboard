@@ -11,12 +11,16 @@ public class HatchAquisitionData extends ComplexData<HatchAquisitionData>
 {
 
     private final double mAngle;
-    private final double mMotorSpeed;
+    private final double mTiltMotorSpeed;
     private final Double mGoalAngle;
+    private final double mLeftHookPosition;
+    private final double mLeftHookSpeed;
+    private final double mRightHookPosition;
+    private final double mRightHookSpeed;
 
     public HatchAquisitionData()
     {
-        this(0, 0, 0, false);
+        this(0, 0, 0, false, 0, 0, 0, 0);
     }
 
     public HatchAquisitionData(Map<String, Object> aMap)
@@ -29,13 +33,22 @@ public class HatchAquisitionData extends ComplexData<HatchAquisitionData>
         this((Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.HATCH_ANGLE_NAME, 0.0),
                 (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.HATCH_SPEED_NAME, 0.0),
                 (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.HATCH_GOAL_ANGLE_NAME, 0.0),
-                (Boolean) aMap.getOrDefault(aPrefix + SmartDashboardNames.HATCH_IS_MM, false));
+                (Boolean) aMap.getOrDefault(aPrefix + SmartDashboardNames.HATCH_IS_MM, false),
+                (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.HATCH_LEFT_HOOK_POSITION_NAME, 0.0),
+                (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.HATCH_LEFT_HOOK_Speed_NAME, 0.0),
+                (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.HATCH_RIGHT_HOOK_POSITION_NAME, 0.0),
+                (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.HATCH_RIGHT_HOOK_Speed_NAME, 0.0));
     }
 
-    public HatchAquisitionData(double aHeight, double aMotorSpeed, double aGoalAngle, boolean aIsMm)
+    public HatchAquisitionData(double aHeight, double aMotorSpeed, double aGoalAngle, boolean aIsMm, double aLeftHookPosition, double aLeftHookSpeed,
+            double aRightHookPosition, double aRightHookSpeed)
     {
         mAngle = aHeight;
-        mMotorSpeed = aMotorSpeed;
+        mTiltMotorSpeed = aMotorSpeed;
+        mLeftHookPosition = aLeftHookPosition;
+        mLeftHookSpeed = aLeftHookSpeed;
+        mRightHookPosition = aRightHookPosition;
+        mRightHookSpeed = aRightHookSpeed;
 
         if (aIsMm)
         {
@@ -64,7 +77,7 @@ public class HatchAquisitionData extends ComplexData<HatchAquisitionData>
     {
         Map<String, Object> map = new HashMap<>();
         map.put(aPrefix + SmartDashboardNames.HATCH_ANGLE_NAME, mAngle);
-        map.put(aPrefix + SmartDashboardNames.HATCH_SPEED_NAME, mMotorSpeed);
+        map.put(aPrefix + SmartDashboardNames.HATCH_SPEED_NAME, mTiltMotorSpeed);
         return map;
     }
 
@@ -73,9 +86,9 @@ public class HatchAquisitionData extends ComplexData<HatchAquisitionData>
         return mAngle;
     }
 
-    public double getMotorSpeed()
+    public double getTiltMotorSpeed()
     {
-        return mMotorSpeed;
+        return mTiltMotorSpeed;
     }
 
     public static boolean hasChanged(Map<String, Object> aChanges)
@@ -88,4 +101,25 @@ public class HatchAquisitionData extends ComplexData<HatchAquisitionData>
     {
         return mGoalAngle;
     }
+
+    public double getLeftHookPosition()
+    {
+        return mLeftHookPosition;
+    }
+
+    public double getLeftHookSpeed()
+    {
+        return mLeftHookSpeed;
+    }
+
+    public double getRightHookPosition()
+    {
+        return mRightHookPosition;
+    }
+
+    public double getRightHookSpeed()
+    {
+        return mRightHookSpeed;
+    }
+
 }
