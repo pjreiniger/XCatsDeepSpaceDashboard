@@ -38,21 +38,3 @@ jobs:
        pathtoPublish: $(Build.ArtifactStagingDirectory)
        ArtifactName: 'artifacts'
    
-  displayName: 'Command Line Script'
-   #- task: GitHubRelease@0
-   #  displayName: 'GitHub release (create)'
-   #  inputs:
-   #    gitHubConnection: 'GitHub connection 1'
-   #    repositoryName: pjreiniger/XCatsDeepSpaceDashboard
-   #    tagSource: manual
-   #    tag: '$(myTagName)'
-   #    assets: |
-   #     $(System.DefaultWorkingDirectory)/Plugin/*.jar
-   #     $(System.DefaultWorkingDirectory)/LinuxMaven/*.zip
-   #     $(System.DefaultWorkingDirectory)/*.zip
-   #     $(Build.ArtifactStagingDirectory)/*.zip
-   #     
-   #     $(System.DefaultWorkingDirectory)/SourceAlias/Plugin/*.jar
-   #     $(System.DefaultWorkingDirectory)/SourceAlias/LinuxMaven/*.zip
-        
-       
