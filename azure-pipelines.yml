@@ -25,3 +25,9 @@ jobs:
      inputs:
        PathtoPublish: 'build/publishing'
        ArtifactName: 'LinuxMaven'
+
+   - task: PublishBuildArtifacts@1
+     displayName: 'Publish Artifact: Plugin'
+     inputs:
+       PathtoPublish: 'build/libs/*.jar'
+       ArtifactName: 'Plugin'
