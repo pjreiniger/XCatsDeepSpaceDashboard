@@ -34,7 +34,7 @@ jobs:
    - task: PublishBuildArtifacts@1
      displayName: 'Publish Artifact: Plugin'
      inputs:
-       PathtoPublish: 'build/libs'
+       pathtoPublish: $(Build.ArtifactStagingDirectory)
        ArtifactName: 'artifacts'
        
    #- task: GitHubRelease@0
