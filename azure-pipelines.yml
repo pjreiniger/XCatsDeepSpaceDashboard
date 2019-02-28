@@ -20,11 +20,10 @@ jobs:
        publishJUnitResults: false
        tasks: 'build publish'
 
-   - task: PublishBuildArtifacts@1
-     displayName: 'Publish Artifact: maven repo'
+   - task: ArchiveFiles@2
+     displayName: 'Archive Maven Artifact'
      inputs:
-       PathtoPublish: 'build/publishing'
-       ArtifactName: 'LinuxMaven'
+       rootFolderOrFile: build/publishing
 
    - task: PublishBuildArtifacts@1
      displayName: 'Publish Artifact: Plugin'
