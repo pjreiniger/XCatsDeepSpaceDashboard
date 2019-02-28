@@ -12,8 +12,8 @@ import edu.wpi.first.shuffleboard.api.plugin.Plugin;
 import edu.wpi.first.shuffleboard.api.widget.ComponentType;
 import edu.wpi.first.shuffleboard.api.widget.WidgetType;
 
-@Description(group = "org.xcats.deep_space.sd_widgets", name = "DeepSpaceRobotWidget", version = "1.0.0", summary = "Widget for the 2019 X-Cats robot")
-public class XcatsRobotWidget2019 extends Plugin
+@Description(group = "org.xcats.deep_space.sd_widgets", name = "XcatsRobotPlugin2019", version = PluginVersion.VERSION, summary = "Widget for the 2019 X-Cats robot")
+public class XcatsRobotPlugin2019 extends Plugin
 {
 
     @Override

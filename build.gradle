@@ -26,6 +26,30 @@ task install_plugin(type: Copy) {
     into("${System.getProperty("user.home")}/Shuffleboard/plugins")
 }
 
+sourceSets.main.java.srcDir "${buildDir}/generated/java/"
+task generate_version() {
+    def generated_dir = file("$buildDir/generated/java/org/xcats/deep_space/sd_widgets")
+    generated_dir.mkdirs()
+    def output_file = file("$generated_dir/PluginVersion.java")
+    def file_template = """package org.xcats.deep_space.sd_widgets;
+
+
+public class PluginVersion
+{
+    public static final String VERSION = "${project.publishing_version}";
+} 
+"""
+    
+    doLast {
+        if (output_file.exists()) {
+            output_file.delete()
+        }
+        output_file.write(file_template)
+    }
+    
+}
+compileJava.dependsOn generate_version
+
 dependencies {
     
     compile "org.openjfx:javafx-base:11:win"

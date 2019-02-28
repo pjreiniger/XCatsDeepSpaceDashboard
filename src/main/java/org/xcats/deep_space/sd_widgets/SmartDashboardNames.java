@@ -20,6 +20,10 @@ public class SmartDashboardNames
     public static final String HATCH_SPEED_NAME = "Speed";
     public static final String HATCH_IS_MM = "Current Set Point/Is MM";
     public static final String HATCH_GOAL_ANGLE_NAME = "Current Set Point/Angle";
+    public static final String HATCH_LEFT_HOOK_POSITION_NAME = "Left Hook Position";
+    public static final String HATCH_LEFT_HOOK_Speed_NAME = "Left Hook Speed";
+    public static final String HATCH_RIGHT_HOOK_POSITION_NAME = "Right Hook Position";
+    public static final String HATCH_RIGHT_HOOK_Speed_NAME = "Right Hook Speed";
 
     public static final String ROBOT_DATA_TABLE_NAME = "RobotData";
 }
