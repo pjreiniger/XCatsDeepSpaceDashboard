@@ -25,14 +25,32 @@ jobs:
      inputs:
        archiveFile: '$(Build.ArtifactStagingDirectory)/MavenRepo.zip' 
        rootFolderOrFile: build/publishing
-
-   - task: PublishBuildArtifacts@1
-     displayName: 'Publish Artifact: maven repo'
+       
+   - task: CopyFiles@2
      inputs:
-       ArtifactName: 'Maven'
+       contents: 'build/libs/*.jar'
+       targetFolder: $(Build.ArtifactStagingDirectory)
 
    - task: PublishBuildArtifacts@1
      displayName: 'Publish Artifact: Plugin'
      inputs:
        PathtoPublish: 'build/libs'
-       ArtifactName: 'Plugin'
+       ArtifactName: 'artifacts'
+       
+   #- task: GitHubRelease@0
+   #  displayName: 'GitHub release (create)'
+   #  inputs:
+   #    gitHubConnection: 'GitHub connection 1'
+   #    repositoryName: pjreiniger/XCatsDeepSpaceDashboard
+   #    tagSource: manual
+   #    tag: '$(myTagName)'
+   #    assets: |
+   #     $(System.DefaultWorkingDirectory)/Plugin/*.jar
+   #     $(System.DefaultWorkingDirectory)/LinuxMaven/*.zip
+   #     $(System.DefaultWorkingDirectory)/*.zip
+   #     $(Build.ArtifactStagingDirectory)/*.zip
+   #     
+   #     $(System.DefaultWorkingDirectory)/SourceAlias/Plugin/*.jar
+   #     $(System.DefaultWorkingDirectory)/SourceAlias/LinuxMaven/*.zip
+        
+       
