@@ -16,7 +16,7 @@ repositories {
 
 ext {
     shuffleboard_version = "2019.3.1";
-    publishing_version = "2019.1.0.0";
+    publishing_version = "1.0.0";
     publishing_url = "${rootDir}/build/publishing"
 }
 
@@ -26,6 +26,9 @@ task install_plugin(type: Copy) {
     into("${System.getProperty("user.home")}/Shuffleboard/plugins")
 }
 
+////////////////////////////
+// Generate Version Info
+////////////////////////////
 sourceSets.main.java.srcDir "${buildDir}/generated/java/"
 task generate_version() {
     def generated_dir = file("$buildDir/generated/java/org/xcats/deep_space/sd_widgets")
@@ -49,6 +52,7 @@ public class PluginVersion
     
 }
 compileJava.dependsOn generate_version
+////////////////////////////
 
 dependencies {
     
@@ -78,6 +82,8 @@ publishing {
             groupId = "org.xcats.deep_space.sd_widgets"
             artifactId = "RobotWidget"
             version = publishing_version
+            
+            artifact jar
         }
     }
 }

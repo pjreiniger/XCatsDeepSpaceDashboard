@@ -20,8 +20,21 @@ jobs:
        publishJUnitResults: false
        tasks: 'build publish'
 
-   - task: PublishBuildArtifacts@1
-     displayName: 'Publish Artifact: maven repo'
+   - task: ArchiveFiles@2
+     displayName: 'Archive Maven Artifact'
      inputs:
-       PathtoPublish: 'build/publishing'
-       ArtifactName: 'LinuxMaven'
+       archiveFile: '$(Build.ArtifactStagingDirectory)/MavenRepo.zip' 
+       rootFolderOrFile: build/publishing
+       
+   - task: CopyFiles@2
+     inputs:
+       sourceFolder: 'build/libs'
+       contents: '*.jar'
+       targetFolder: $(Build.ArtifactStagingDirectory)
+
+   - task: PublishBuildArtifacts@1
+     displayName: 'Publish Artifact: Plugin'
+     inputs:
+       pathtoPublish: $(Build.ArtifactStagingDirectory)
+       ArtifactName: 'artifacts'
+   

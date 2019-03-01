@@ -63,7 +63,8 @@ public class RobotWidget extends ComplexAnnotatedWidget<RobotData>
 
     private void updateHatch(HatchAquisitionData aHatchData)
     {
-        mRobotContainerController.setHatchAquisitionData(aHatchData.getAngle(), aHatchData.getTiltMotorSpeed(), aHatchData.getGoalAngle(), 0, 0, 0, 0);
+        mRobotContainerController.setHatchAquisitionData(aHatchData.getAngle(), aHatchData.getTiltMotorSpeed(), aHatchData.getGoalAngle(),
+                aHatchData.getLeftHookSpeed(), aHatchData.getLeftHookPosition(), aHatchData.getRightHookSpeed(), aHatchData.getRightHookPosition());
     }
 
     @Override
