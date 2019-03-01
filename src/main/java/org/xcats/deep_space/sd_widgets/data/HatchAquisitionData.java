@@ -35,9 +35,9 @@ public class HatchAquisitionData extends ComplexData<HatchAquisitionData>
                 (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.HATCH_GOAL_ANGLE_NAME, 0.0),
                 (Boolean) aMap.getOrDefault(aPrefix + SmartDashboardNames.HATCH_IS_MM, false),
                 (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.HATCH_LEFT_HOOK_POSITION_NAME, 0.0),
-                (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.HATCH_LEFT_HOOK_Speed_NAME, 0.0),
+                (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.HATCH_LEFT_HOOK_SPEED_NAME, 0.0),
                 (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.HATCH_RIGHT_HOOK_POSITION_NAME, 0.0),
-                (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.HATCH_RIGHT_HOOK_Speed_NAME, 0.0));
+                (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.HATCH_RIGHT_HOOK_SPEED_NAME, 0.0));
     }
 
     public HatchAquisitionData(double aHeight, double aMotorSpeed, double aGoalAngle, boolean aIsMm, double aLeftHookPosition, double aLeftHookSpeed,
@@ -78,7 +78,22 @@ public class HatchAquisitionData extends ComplexData<HatchAquisitionData>
         Map<String, Object> map = new HashMap<>();
         map.put(aPrefix + SmartDashboardNames.HATCH_ANGLE_NAME, mAngle);
         map.put(aPrefix + SmartDashboardNames.HATCH_SPEED_NAME, mTiltMotorSpeed);
+        map.put(aPrefix + SmartDashboardNames.HATCH_LEFT_HOOK_POSITION_NAME, mRightHookPosition);
+        map.put(aPrefix + SmartDashboardNames.HATCH_LEFT_HOOK_SPEED_NAME, mLeftHookSpeed);
+        map.put(aPrefix + SmartDashboardNames.HATCH_RIGHT_HOOK_POSITION_NAME, mRightHookPosition);
+        map.put(aPrefix + SmartDashboardNames.HATCH_RIGHT_HOOK_SPEED_NAME, mRightHookSpeed);
+
         return map;
+    }
+
+    public static boolean hasChanged(Map<String, Object> aChanges)
+    {
+        return aChanges.containsKey(SmartDashboardNames.HATCH_TABLE_NAME + "/" + SmartDashboardNames.HATCH_SPEED_NAME)
+                || aChanges.containsKey(SmartDashboardNames.HATCH_TABLE_NAME + "/" + SmartDashboardNames.HATCH_ANGLE_NAME)
+                || aChanges.containsKey(SmartDashboardNames.HATCH_TABLE_NAME + "/" + SmartDashboardNames.HATCH_LEFT_HOOK_POSITION_NAME)
+                || aChanges.containsKey(SmartDashboardNames.HATCH_TABLE_NAME + "/" + SmartDashboardNames.HATCH_LEFT_HOOK_SPEED_NAME)
+                || aChanges.containsKey(SmartDashboardNames.HATCH_TABLE_NAME + "/" + SmartDashboardNames.HATCH_RIGHT_HOOK_POSITION_NAME)
+                || aChanges.containsKey(SmartDashboardNames.HATCH_TABLE_NAME + "/" + SmartDashboardNames.HATCH_RIGHT_HOOK_SPEED_NAME);
     }
 
     public double getAngle()
@@ -89,12 +104,6 @@ public class HatchAquisitionData extends ComplexData<HatchAquisitionData>
     public double getTiltMotorSpeed()
     {
         return mTiltMotorSpeed;
-    }
-
-    public static boolean hasChanged(Map<String, Object> aChanges)
-    {
-        return aChanges.containsKey(SmartDashboardNames.HATCH_TABLE_NAME + "/" + SmartDashboardNames.HATCH_SPEED_NAME)
-                || aChanges.containsKey(SmartDashboardNames.HATCH_TABLE_NAME + "/" + SmartDashboardNames.HATCH_ANGLE_NAME);
     }
 
     public Double getGoalAngle()
