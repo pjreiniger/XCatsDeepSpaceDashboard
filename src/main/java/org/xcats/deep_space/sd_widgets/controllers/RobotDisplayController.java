@@ -20,11 +20,10 @@ public class RobotDisplayController
         mSuperstructureController.setCargoData(aAngle, aArmMotorSpeed, aRollerSpeed, aGoalAngle);
     }
 
-    public void setHatchAquisitionData(double aAngle, double aMotorSpeed, Double aGoalAngle, double aLeftHookSpeed, double aLeftHookPosition,
-            double aRightHookSpeed, double aRightHookPosition)
+    public void setHatchAquisitionData(double aAngle, double aMotorSpeed, double aHookSpeed, double aHookPosition)
     {
-        mSuperstructureController.setHatchAquisitionData(aAngle, aMotorSpeed, aGoalAngle);
-        mHackquisitionController.setHatchData(aLeftHookSpeed, aLeftHookPosition, aRightHookSpeed, aRightHookPosition);
+        mSuperstructureController.setHatchAquisitionData(aAngle, aMotorSpeed);
+        mHackquisitionController.setHatchData(aHookSpeed, aHookPosition);
     }
 
 }

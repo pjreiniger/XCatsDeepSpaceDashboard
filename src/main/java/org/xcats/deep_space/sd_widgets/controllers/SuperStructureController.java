@@ -178,16 +178,10 @@ public class SuperStructureController
         }
     }
 
-    public void setHatchAquisitionData(double aAngle, double aMotorSpeed, Double aGoalAngle)
+    public void setHatchAquisitionData(double aAngle, double aMotorSpeed)
     {
         mHatchRotation.setAngle(aAngle);
         Utils.setColor(mHatchAquisition, DEFAULT_HATCH_COLOR, aMotorSpeed);
-
-        setGoalColor(mHatchAquisitionGoal, aGoalAngle);
-        if (aGoalAngle != null)
-        {
-            mHatchGoalRotation.setAngle(aGoalAngle);
-        }
     }
 
     private void setGoalColor(Shape aShape, Double aValue)

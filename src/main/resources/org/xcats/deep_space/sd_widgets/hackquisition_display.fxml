@@ -18,8 +18,7 @@
         <Group fx:id="mGroup">
             <children>
                 <Rectangle fx:id="mBoundingBox" x="0" y="0" width="$mTrackWidth" height="$mTrackHeight" />
-                <Rectangle fx:id="mRightHook" x="$mHookWidth" y="0" width="$mHookWidth" height="$mHookHeight" />
-                <Rectangle fx:id="mLeftHook"  x="0"           y="0" width="$mHookWidth" height="$mHookHeight" />
+                <Rectangle fx:id="mHooks" x="$mHookWidth" y="0" width="$mHookWidth" height="$mHookHeight" />
             </children>
         </Group>
     </children>

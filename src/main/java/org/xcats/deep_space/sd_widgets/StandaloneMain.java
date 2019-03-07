@@ -20,8 +20,7 @@ public class StandaloneMain
     private double mCargoSpeed;
     private double mHatchArmSpeed;
     private double mHatchHookSpeed;
-    private double mHatchLefthHookPosition;
-    private double mHatchRighthHookPosition;
+    private double mHatchHookPosition;
 
     private double mElevatorHeight;
     private double mCargoAngle;
@@ -29,7 +28,6 @@ public class StandaloneMain
 
     private Double mElevatorGoal;
     private Double mCargoGoalAngle;
-    private Double mHatchGoalAngle;
 
     public StandaloneMain(Scene aScene, RobotDisplayController aRobotController)
     {
@@ -63,15 +61,6 @@ public class StandaloneMain
                 case D:
                     mCargoSpeed = 1;
                     mCargoGoalAngle = 0.0;
-                    break;
-
-                case I:
-                    mHatchArmSpeed = 1;
-                    mHatchGoalAngle = 45.0;
-                    break;
-                case K:
-                    mHatchArmSpeed = -1;
-                    mHatchGoalAngle = 20.0;
                     break;
 
                 case J:
@@ -111,7 +100,6 @@ public class StandaloneMain
                 case I:
                 case K:
                     mHatchArmSpeed = 0;
-                    mHatchGoalAngle = null;
                     break;
                 case J:
                 case L:
@@ -132,15 +120,12 @@ public class StandaloneMain
         mCargoAngle += mCargoSpeed * 1;
         mHatchAngle += mHatchArmSpeed * 1;
 
-        mHatchLefthHookPosition += mHatchHookSpeed *= 1;
-        mHatchRighthHookPosition += mHatchHookSpeed *= 1.2;
+        mHatchHookPosition += mHatchHookSpeed *= 1;
 
         mRobotController.setElevatorData(mElevatorHeight, mElevatorSpeed, mElevatorGoal);
         mRobotController.setCargoData(mCargoAngle, mCargoSpeed, .5, mCargoGoalAngle);
-        mRobotController.setHatchAquisitionData(mHatchAngle, mHatchArmSpeed, mHatchGoalAngle, mHatchHookSpeed, mHatchLefthHookPosition,
-                -mHatchHookSpeed, mHatchRighthHookPosition);
+        mRobotController.setHatchAquisitionData(mHatchAngle, mHatchArmSpeed, mHatchHookSpeed, mHatchHookPosition);
     }
-
 
     public static class PseudoMain extends Application
     {

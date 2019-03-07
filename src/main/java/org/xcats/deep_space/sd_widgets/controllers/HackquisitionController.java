@@ -29,10 +29,7 @@ public class HackquisitionController
     private Rectangle mBoundingBox;
 
     @FXML
-    private Rectangle mLeftHook;
-
-    @FXML
-    private Rectangle mRightHook;
+    private Rectangle mHooks;
 
     @FXML
     public void initialize()
@@ -57,22 +54,15 @@ public class HackquisitionController
         mBoundingBox.setStroke(Color.BLACK);
         mBoundingBox.setFill(Color.TRANSPARENT);
 
-        mLeftHook.setStroke(Color.SKYBLUE);
-        mLeftHook.setFill(Color.TRANSPARENT);
-        mLeftHook.setStrokeWidth(.1);
-
-        mRightHook.setStroke(Color.DARKBLUE);
-        mRightHook.setFill(Color.TRANSPARENT);
-        mRightHook.setStrokeWidth(.1);
+        mHooks.setStroke(Color.SKYBLUE);
+        mHooks.setFill(Color.TRANSPARENT);
+        mHooks.setStrokeWidth(.1);
     }
 
-    public void setHatchData(double aLeftSpeed, double aLeftPosition, double aRightSpeed, double aRightPosition)
+    public void setHatchData(double aHookSpeed, double aHookPosition)
     {
-        mLeftHook.setFill(Utils.getMotorColor(aLeftSpeed));
-        mLeftHook.setX(aLeftPosition);
-
-        mRightHook.setFill(Utils.getMotorColor(aRightSpeed));
-        mRightHook.setX(aRightPosition);
+        mHooks.setFill(Utils.getMotorColor(aHookSpeed));
+        mHooks.setX(aHookPosition);
     }
 
 }
