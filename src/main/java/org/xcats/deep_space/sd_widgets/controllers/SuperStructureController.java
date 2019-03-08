@@ -67,7 +67,6 @@ public class SuperStructureController
     private Rotate mCargoRotation;
     private Rotate mCargoGoalRotation;
     private Rotate mHatchRotation;
-    private Rotate mHatchGoalRotation;
 
     @FXML
     public void initialize()
@@ -142,11 +141,6 @@ public class SuperStructureController
 
             mHatchAquisition.getTransforms().add(mHatchRotation);
             mHatchAquisition.yProperty().bind(hatchYBinding);
-
-            mHatchGoalRotation = new Rotate();
-            mHatchGoalRotation.pivotXProperty().bind(mHatchAquisition.xProperty());
-            mHatchGoalRotation.pivotYProperty().bind(mHatchAquisition.yProperty());
-            mHatchGoalRotation.pivotYProperty().bind(hatchPivotYProperty);
         }
     }
 
@@ -158,7 +152,6 @@ public class SuperStructureController
 
         Utils.setColor(mElevator, DEFAULT_ELEVATOR_COLOR, aMotorSpeed);
 
-        System.out.println("Goal height " + aGoalHeight);
         setGoalColor(mElevatorGoal, aGoalHeight);
         if (aGoalHeight != null)
         {
@@ -168,7 +161,7 @@ public class SuperStructureController
         }
     }
 
-    public void setCargoData(double aAngle, double aArmMotorSpeed, double aRollerSpeed, Double aGoalAngle, boolean hasBall)
+    public void setCargoData(double aAngle, double aArmMotorSpeed, double aRollerSpeed, Double aGoalAngle, boolean aHasBall)
     {
         mCargoRotation.setAngle(-aAngle); // Flip it so 90 is straight up, 0 is horizontal
         Utils.setColor(mCargoRollers, null, aRollerSpeed);
@@ -180,8 +173,7 @@ public class SuperStructureController
             mCargoGoalRotation.setAngle(-aGoalAngle);
         }
 
-        System.out.println("Ha bal " + hasBall);
-        mHasCargoIndicator.setVisible(hasBall);
+        mHasCargoIndicator.setVisible(aHasBall);
     }
 
     public void setHatchAquisitionData(double aAngle, double aMotorSpeed, boolean aIsRetracted, boolean aIsScoring)

@@ -15,9 +15,9 @@ public class RobotDisplayController
         mSuperstructureController.setElevatorData(aHeight, aMotorSpeed, aGoalHeight);
     }
 
-    public void setCargoData(double aAngle, double aArmMotorSpeed, double aRollerSpeed, Double aGoalAngle, boolean hasBall)
+    public void setCargoData(double aAngle, double aArmMotorSpeed, double aRollerSpeed, Double aGoalAngle, boolean aHasBall)
     {
-        mSuperstructureController.setCargoData(aAngle, aArmMotorSpeed, aRollerSpeed, aGoalAngle, hasBall);
+        mSuperstructureController.setCargoData(aAngle, aArmMotorSpeed, aRollerSpeed, aGoalAngle, aHasBall);
     }
 
     public void setHatchAquisitionData(double aAngle, double aMotorSpeed, boolean aIsRetracted, boolean aIsScoring, double aHookSpeed,
