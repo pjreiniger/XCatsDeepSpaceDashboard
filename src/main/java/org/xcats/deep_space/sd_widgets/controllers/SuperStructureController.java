@@ -62,7 +62,7 @@ public class SuperStructureController
     private Rectangle mHatchAquisition;
 
     @FXML
-    private Rectangle mHatchAquisitionGoal;
+    private Circle mHasCargoIndicator;
 
     private Rotate mCargoRotation;
     private Rotate mCargoGoalRotation;
@@ -115,6 +115,11 @@ public class SuperStructureController
             return mCargoAquisition.getY() + CARGO_ROLLER_RADIUS;
         }, mCargoAquisition.yProperty()));
 
+        mHasCargoIndicator.setCenterX(CARGO_WIDTH + 5 * 2);
+        mHasCargoIndicator.setCenterY(20);
+        mHasCargoIndicator.setStroke(Color.BLACK);
+        mHasCargoIndicator.setFill(Color.ORANGE);
+
         //////////////////////////////////////////////////
         // Hatch
         //////////////////////////////////////////////////
@@ -142,9 +147,6 @@ public class SuperStructureController
             mHatchGoalRotation.pivotXProperty().bind(mHatchAquisition.xProperty());
             mHatchGoalRotation.pivotYProperty().bind(mHatchAquisition.yProperty());
             mHatchGoalRotation.pivotYProperty().bind(hatchPivotYProperty);
-
-            mHatchAquisitionGoal.getTransforms().add(mHatchGoalRotation);
-            mHatchAquisitionGoal.yProperty().bind(hatchYBinding);
         }
     }
 
@@ -156,6 +158,7 @@ public class SuperStructureController
 
         Utils.setColor(mElevator, DEFAULT_ELEVATOR_COLOR, aMotorSpeed);
 
+        System.out.println("Goal height " + aGoalHeight);
         setGoalColor(mElevatorGoal, aGoalHeight);
         if (aGoalHeight != null)
         {
@@ -165,7 +168,7 @@ public class SuperStructureController
         }
     }
 
-    public void setCargoData(double aAngle, double aArmMotorSpeed, double aRollerSpeed, Double aGoalAngle)
+    public void setCargoData(double aAngle, double aArmMotorSpeed, double aRollerSpeed, Double aGoalAngle, boolean hasBall)
     {
         mCargoRotation.setAngle(-aAngle); // Flip it so 90 is straight up, 0 is horizontal
         Utils.setColor(mCargoRollers, null, aRollerSpeed);
@@ -176,12 +179,28 @@ public class SuperStructureController
         {
             mCargoGoalRotation.setAngle(-aGoalAngle);
         }
+
+        System.out.println("Ha bal " + hasBall);
+        mHasCargoIndicator.setVisible(hasBall);
     }
 
-    public void setHatchAquisitionData(double aAngle, double aMotorSpeed)
+    public void setHatchAquisitionData(double aAngle, double aMotorSpeed, boolean aIsRetracted, boolean aIsScoring)
     {
         mHatchRotation.setAngle(aAngle);
         Utils.setColor(mHatchAquisition, DEFAULT_HATCH_COLOR, aMotorSpeed);
+
+        if (aIsRetracted)
+        {
+            mHatchAquisition.setStroke(Color.RED);
+        }
+        else if (aIsScoring)
+        {
+            mHatchAquisition.setStroke(Color.GREEN);
+        }
+        else
+        {
+            mHatchAquisition.setStroke(Color.TRANSPARENT);
+        }
     }
 
     private void setGoalColor(Shape aShape, Double aValue)

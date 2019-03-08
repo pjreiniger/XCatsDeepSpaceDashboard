@@ -12,12 +12,16 @@ public class HatchAquisitionData extends ComplexData<HatchAquisitionData>
 
     private final double mAngle;
     private final double mTiltMotorSpeed;
+    private final boolean mIsRetracted;
+    private final boolean mIsScoring;
+
     private final double mHookPosition;
     private final double mHookSpeed;
 
+
     public HatchAquisitionData()
     {
-        this(0, 0, 0, 0);
+        this(0, 0, false, false, 0, 0);
     }
 
     public HatchAquisitionData(Map<String, Object> aMap)
@@ -29,16 +33,20 @@ public class HatchAquisitionData extends ComplexData<HatchAquisitionData>
     {
         this((Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.HATCH_ANGLE_NAME, 0.0),
                 (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.HATCH_SPEED_NAME, 0.0),
+                (Boolean) aMap.getOrDefault(aPrefix + SmartDashboardNames.HATCH_ARM_RETRACTED, false),
+                (Boolean) aMap.getOrDefault(aPrefix + SmartDashboardNames.HATCH_ARM_SCORING, false),
                 (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.HATCH_HOOK_POSITION_NAME, 0.0),
                 (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.HATCH_HOOK_SPEED_NAME, 0.0));
     }
 
-    public HatchAquisitionData(double aHeight, double aMotorSpeed, double aHookPosition, double aHookSpeed)
+    public HatchAquisitionData(double aHeight, double aMotorSpeed, boolean aIsRetracted, boolean aIsScoring, double aHookPosition, double aHookSpeed)
     {
         mAngle = aHeight;
         mTiltMotorSpeed = aMotorSpeed;
         mHookPosition = aHookPosition;
         mHookSpeed = aHookSpeed;
+        mIsRetracted = aIsRetracted;
+        mIsScoring = aIsScoring;
     }
 
     @Override
@@ -59,6 +67,8 @@ public class HatchAquisitionData extends ComplexData<HatchAquisitionData>
         Map<String, Object> map = new HashMap<>();
         map.put(aPrefix + SmartDashboardNames.HATCH_ANGLE_NAME, mAngle);
         map.put(aPrefix + SmartDashboardNames.HATCH_SPEED_NAME, mTiltMotorSpeed);
+        map.put(aPrefix + SmartDashboardNames.HATCH_ARM_RETRACTED, mIsRetracted);
+        map.put(aPrefix + SmartDashboardNames.HATCH_ARM_SCORING, mIsScoring);
         map.put(aPrefix + SmartDashboardNames.HATCH_HOOK_POSITION_NAME, mHookPosition);
         map.put(aPrefix + SmartDashboardNames.HATCH_HOOK_SPEED_NAME, mHookSpeed);
 
@@ -93,4 +103,13 @@ public class HatchAquisitionData extends ComplexData<HatchAquisitionData>
         return mHookSpeed;
     }
 
+    public boolean isRetracted()
+    {
+        return mIsRetracted;
+    }
+
+    public boolean isScoring()
+    {
+        return mIsScoring;
+    }
 }

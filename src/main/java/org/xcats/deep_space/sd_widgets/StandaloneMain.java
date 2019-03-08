@@ -63,6 +63,13 @@ public class StandaloneMain
                     mCargoGoalAngle = 0.0;
                     break;
 
+                case I:
+                    mHatchArmSpeed = 1;
+                    break;
+                case K:
+                    mHatchArmSpeed = -1;
+                    break;
+
                 case J:
                     mHatchHookSpeed = 1;
                     break;
@@ -122,9 +129,12 @@ public class StandaloneMain
 
         mHatchHookPosition += mHatchHookSpeed *= 1;
 
+        boolean isHatchRetracted = mHatchAngle > 90;
+        boolean isScoring = mHatchAngle < 0;
+
         mRobotController.setElevatorData(mElevatorHeight, mElevatorSpeed, mElevatorGoal);
-        mRobotController.setCargoData(mCargoAngle, mCargoSpeed, .5, mCargoGoalAngle);
-        mRobotController.setHatchAquisitionData(mHatchAngle, mHatchArmSpeed, mHatchHookSpeed, mHatchHookPosition);
+        mRobotController.setCargoData(mCargoAngle, mCargoSpeed, .5, mCargoGoalAngle, true);
+        mRobotController.setHatchAquisitionData(mHatchAngle, mHatchArmSpeed, isHatchRetracted, isScoring, mHatchHookSpeed, mHatchHookPosition);
     }
 
     public static class PseudoMain extends Application

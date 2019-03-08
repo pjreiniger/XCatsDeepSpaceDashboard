@@ -13,10 +13,11 @@ public class CargoAquisitionData extends ComplexData<CargoAquisitionData>
     private final double mArmSpeed;
     private final double mCargoSpeed;
     private final Double mGoalAngle;
+    private final boolean mHasBall;
 
     public CargoAquisitionData()
     {
-        this(0, 0, 0, 0, false);
+        this(0, 0, 0, 0, false, false);
     }
 
     public CargoAquisitionData(Map<String, Object> aMap)
@@ -30,14 +31,16 @@ public class CargoAquisitionData extends ComplexData<CargoAquisitionData>
                 (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.CARGO_SPEED_NAME, 0.0),
                 (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.CARGO_ROLLERS_NAME, 0.0),
                 (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.CARGO_GOAL_ANGLE_NAME, 0.0),
-                (Boolean) aMap.getOrDefault(aPrefix + SmartDashboardNames.CARGO_IS_MM, false));
+                (Boolean) aMap.getOrDefault(aPrefix + SmartDashboardNames.CARGO_IS_MM, false),
+                (Boolean) aMap.getOrDefault(aPrefix + SmartDashboardNames.CARGO_HAS_BALL, false));
     }
 
-    public CargoAquisitionData(double aHeight, double aArmSpeed, double aRollersSpeed, double aGoalAngle, boolean aIsMm)
+    public CargoAquisitionData(double aHeight, double aArmSpeed, double aRollersSpeed, double aGoalAngle, boolean aIsMm, boolean aHasBall)
     {
         mArmAngle = aHeight;
         mArmSpeed = aArmSpeed;
         mCargoSpeed = aRollersSpeed;
+        mHasBall = aHasBall;
 
         if (aIsMm)
         {
@@ -68,6 +71,9 @@ public class CargoAquisitionData extends ComplexData<CargoAquisitionData>
         map.put(aPrefix + SmartDashboardNames.CARGO_ANGLE_NAME, mArmAngle);
         map.put(aPrefix + SmartDashboardNames.CARGO_SPEED_NAME, mArmSpeed);
         map.put(aPrefix + SmartDashboardNames.CARGO_ROLLERS_NAME, mCargoSpeed);
+        map.put(aPrefix + SmartDashboardNames.CARGO_GOAL_ANGLE_NAME, mGoalAngle);
+        map.put(aPrefix + SmartDashboardNames.CARGO_IS_MM, mGoalAngle != null);
+        map.put(aPrefix + SmartDashboardNames.CARGO_HAS_BALL, mHasBall);
         return map;
     }
 
@@ -91,12 +97,18 @@ public class CargoAquisitionData extends ComplexData<CargoAquisitionData>
         return mGoalAngle;
     }
 
+    public boolean hasBall()
+    {
+        return mHasBall;
+    }
+
     public static boolean hasChanged(Map<String, Object> aChanges)
     {
-        return aChanges.containsKey(SmartDashboardNames.CARGO_TABLE_NAME + "/" + SmartDashboardNames.CARGO_SPEED_NAME)
-                || aChanges.containsKey(SmartDashboardNames.CARGO_TABLE_NAME + "/" + SmartDashboardNames.CARGO_ANGLE_NAME)
+        return aChanges.containsKey(SmartDashboardNames.CARGO_TABLE_NAME + "/" + SmartDashboardNames.CARGO_ANGLE_NAME)
+                || aChanges.containsKey(SmartDashboardNames.CARGO_TABLE_NAME + "/" + SmartDashboardNames.CARGO_SPEED_NAME)
                 || aChanges.containsKey(SmartDashboardNames.CARGO_TABLE_NAME + "/" + SmartDashboardNames.CARGO_GOAL_ANGLE_NAME)
-                || aChanges.containsKey(SmartDashboardNames.CARGO_TABLE_NAME + "/" + SmartDashboardNames.CARGO_ROLLERS_NAME);
+                || aChanges.containsKey(SmartDashboardNames.CARGO_TABLE_NAME + "/" + SmartDashboardNames.CARGO_ROLLERS_NAME)
+                || aChanges.containsKey(SmartDashboardNames.CARGO_TABLE_NAME + "/" + SmartDashboardNames.CARGO_HAS_BALL);
     }
 
 }

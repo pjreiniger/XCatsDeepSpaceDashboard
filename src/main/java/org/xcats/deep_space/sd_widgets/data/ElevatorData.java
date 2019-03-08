@@ -66,6 +66,8 @@ public class ElevatorData extends ComplexData<ElevatorData>
         Map<String, Object> map = new HashMap<>();
         map.put(aPrefix + SmartDashboardNames.ELEVATOR_HEIGHT_NAME, mHeight);
         map.put(aPrefix + SmartDashboardNames.ELEVATOR_SPEED_NAME, mMotorSpeed);
+        map.put(aPrefix + SmartDashboardNames.ELEVATOR_GOAL_HEIGHT_NAME, mGoalHeight);
+        map.put(aPrefix + SmartDashboardNames.ELEVATOR_IS_MM, mGoalHeight != null);
         return map;
     }
 
@@ -87,6 +89,8 @@ public class ElevatorData extends ComplexData<ElevatorData>
     public static boolean hasChanged(Map<String, Object> aChanges)
     {
         return aChanges.containsKey(SmartDashboardNames.ELEVATOR_TABLE_NAME + "/" + SmartDashboardNames.ELEVATOR_SPEED_NAME)
-                || aChanges.containsKey(SmartDashboardNames.ELEVATOR_TABLE_NAME + "/" + SmartDashboardNames.ELEVATOR_HEIGHT_NAME);
+                || aChanges.containsKey(SmartDashboardNames.ELEVATOR_TABLE_NAME + "/" + SmartDashboardNames.ELEVATOR_HEIGHT_NAME)
+                || aChanges.containsKey(SmartDashboardNames.ELEVATOR_TABLE_NAME + "/" + SmartDashboardNames.ELEVATOR_GOAL_HEIGHT_NAME)
+                || aChanges.containsKey(SmartDashboardNames.ELEVATOR_TABLE_NAME + "/" + SmartDashboardNames.ELEVATOR_IS_MM);
     }
 }

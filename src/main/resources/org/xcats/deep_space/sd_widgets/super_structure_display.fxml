@@ -19,6 +19,7 @@
         <Double fx:id="HATCH_HEIGHT"  fx:value="3.0"/>
         <Double fx:id="HATCH_WIDTH"  fx:value="5.0"/>
         <Double fx:id="HATCH_ELEVATOR_OFFSET"  fx:value="17"/>
+        <Double fx:id="CARGO_RADIUS"  fx:value="5"/>
     </fx:define>
     
     <children>
@@ -29,8 +30,8 @@
                 <Rectangle fx:id="mCargoAquisition" x="$ELEVATOR_WIDTH" y="0" width="$CARGO_WIDTH" height="$CARGO_HEIGHT"/>
                 <Rectangle fx:id="mCargoAquisitionGoal" x="$ELEVATOR_WIDTH" y="0" width="$CARGO_WIDTH" height="$CARGO_HEIGHT"/>
                 <Rectangle fx:id="mHatchAquisition" x="$ELEVATOR_WIDTH" y="0" width="$HATCH_WIDTH" height="$HATCH_HEIGHT"/>
-                <Rectangle fx:id="mHatchAquisitionGoal"  x="$ELEVATOR_WIDTH" y="0" width="$HATCH_WIDTH" height="$HATCH_HEIGHT"/>
                 <Circle fx:id="mCargoRollers" radius="$CARGO_ROLLER_RADIUS" />
+                <Circle fx:id="mHasCargoIndicator" radius="$CARGO_RADIUS" />
             </children>
         </Group>
     </children>
