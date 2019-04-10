@@ -9,14 +9,12 @@ import edu.wpi.first.shuffleboard.api.data.ComplexData;
 
 public class CargoAquisitionData extends ComplexData<CargoAquisitionData>
 {
-    private final double mArmAngle;
-    private final double mArmSpeed;
     private final double mCargoSpeed;
-    private final Double mGoalAngle;
+    private final boolean mHasBall;
 
     public CargoAquisitionData()
     {
-        this(0, 0, 0, 0, false);
+        this(0, false);
     }
 
     public CargoAquisitionData(Map<String, Object> aMap)
@@ -26,27 +24,14 @@ public class CargoAquisitionData extends ComplexData<CargoAquisitionData>
 
     public CargoAquisitionData(String aPrefix, Map<String, Object> aMap)
     {
-        this((Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.CARGO_ANGLE_NAME, 0.0),
-                (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.CARGO_SPEED_NAME, 0.0),
-                (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.CARGO_ROLLERS_NAME, 0.0),
-                (Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.CARGO_GOAL_ANGLE_NAME, 0.0),
-                (Boolean) aMap.getOrDefault(aPrefix + SmartDashboardNames.CARGO_IS_MM, false));
+        this((Double) aMap.getOrDefault(aPrefix + SmartDashboardNames.CARGO_ROLLERS_NAME, 0.0),
+                (Boolean) aMap.getOrDefault(aPrefix + SmartDashboardNames.CARGO_HAS_BALL, false));
     }
 
-    public CargoAquisitionData(double aHeight, double aArmSpeed, double aRollersSpeed, double aGoalAngle, boolean aIsMm)
+    public CargoAquisitionData(double aRollersSpeed, boolean aHasBall)
     {
-        mArmAngle = aHeight;
-        mArmSpeed = aArmSpeed;
         mCargoSpeed = aRollersSpeed;
-
-        if (aIsMm)
-        {
-            mGoalAngle = aGoalAngle;
-        }
-        else
-        {
-            mGoalAngle = null;
-        }
+        mHasBall = aHasBall;
     }
 
     @Override
@@ -65,20 +50,9 @@ public class CargoAquisitionData extends ComplexData<CargoAquisitionData>
     public Map<String, Object> asMap(String aPrefix)
     {
         Map<String, Object> map = new HashMap<>();
-        map.put(aPrefix + SmartDashboardNames.CARGO_ANGLE_NAME, mArmAngle);
-        map.put(aPrefix + SmartDashboardNames.CARGO_SPEED_NAME, mArmSpeed);
         map.put(aPrefix + SmartDashboardNames.CARGO_ROLLERS_NAME, mCargoSpeed);
+        map.put(aPrefix + SmartDashboardNames.CARGO_HAS_BALL, mHasBall);
         return map;
-    }
-
-    public double getArmAngle()
-    {
-        return mArmAngle;
-    }
-
-    public double getArmSpeed()
-    {
-        return mArmSpeed;
     }
 
     public double getRollerSpeed()
@@ -86,17 +60,15 @@ public class CargoAquisitionData extends ComplexData<CargoAquisitionData>
         return mCargoSpeed;
     }
 
-    public Double getGoalAngle()
+    public boolean hasBall()
     {
-        return mGoalAngle;
+        return mHasBall;
     }
 
     public static boolean hasChanged(Map<String, Object> aChanges)
     {
-        return aChanges.containsKey(SmartDashboardNames.CARGO_TABLE_NAME + "/" + SmartDashboardNames.CARGO_SPEED_NAME)
-                || aChanges.containsKey(SmartDashboardNames.CARGO_TABLE_NAME + "/" + SmartDashboardNames.CARGO_ANGLE_NAME)
-                || aChanges.containsKey(SmartDashboardNames.CARGO_TABLE_NAME + "/" + SmartDashboardNames.CARGO_GOAL_ANGLE_NAME)
-                || aChanges.containsKey(SmartDashboardNames.CARGO_TABLE_NAME + "/" + SmartDashboardNames.CARGO_ROLLERS_NAME);
+        return aChanges.containsKey(SmartDashboardNames.CARGO_TABLE_NAME + "/" + SmartDashboardNames.CARGO_ROLLERS_NAME)
+                || aChanges.containsKey(SmartDashboardNames.CARGO_TABLE_NAME + "/" + SmartDashboardNames.CARGO_HAS_BALL);
     }
 
 }

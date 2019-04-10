@@ -2,7 +2,7 @@ package org.xcats.deep_space.sd_widgets;
 
 import java.util.Map;
 
-import org.xcats.deep_space.sd_widgets.controllers.RobotDisplayController;
+import org.xcats.deep_space.sd_widgets.controllers.SuperStructureController;
 import org.xcats.deep_space.sd_widgets.data.CargoAquisitionData;
 import org.xcats.deep_space.sd_widgets.data.ElevatorData;
 import org.xcats.deep_space.sd_widgets.data.HatchAquisitionData;
@@ -22,7 +22,7 @@ public class RobotWidget extends ComplexAnnotatedWidget<RobotData>
     private Pane mRoot;
 
     @FXML
-    protected RobotDisplayController mRobotContainerController;
+    protected SuperStructureController mRobotContainerController;
 
     /**
      * Called after JavaFX initialization.
@@ -58,13 +58,12 @@ public class RobotWidget extends ComplexAnnotatedWidget<RobotData>
 
     private void updateCargo(CargoAquisitionData aCargoData)
     {
-        mRobotContainerController.setCargoData(aCargoData.getArmAngle(), aCargoData.getArmSpeed(), aCargoData.getRollerSpeed(), aCargoData.getGoalAngle());
+        mRobotContainerController.setCargoData(aCargoData.getRollerSpeed(), aCargoData.hasBall());
     }
 
     private void updateHatch(HatchAquisitionData aHatchData)
     {
-        mRobotContainerController.setHatchAquisitionData(aHatchData.getAngle(), aHatchData.getTiltMotorSpeed(), aHatchData.getGoalAngle(),
-                aHatchData.getLeftHookSpeed(), aHatchData.getLeftHookPosition(), aHatchData.getRightHookSpeed(), aHatchData.getRightHookPosition());
+        mRobotContainerController.setHatchAquisitionData(aHatchData.getVelcroSolenoid(), aHatchData.getDeploySolenoid());
     }
 
     @Override

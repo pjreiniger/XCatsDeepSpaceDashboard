@@ -2,7 +2,7 @@ package org.xcats.deep_space.sd_widgets;
 
 import java.io.IOException;
 
-import org.xcats.deep_space.sd_widgets.controllers.RobotDisplayController;
+import org.xcats.deep_space.sd_widgets.controllers.SuperStructureController;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -15,28 +15,21 @@ import javafx.stage.Stage;
 
 public class StandaloneMain
 {
-    private final RobotDisplayController mRobotController;
+    private final SuperStructureController mRobotController;
     private double mElevatorSpeed;
-    private double mCargoSpeed;
-    private double mHatchArmSpeed;
-    private double mHatchHookSpeed;
-    private double mHatchLefthHookPosition;
-    private double mHatchRighthHookPosition;
+    private double mCargoWheelSpeed;
+    private boolean mCargoHasBall;
+    private boolean mHatchVelcro;
+    private boolean mHatchPusher;
 
     private double mElevatorHeight;
-    private double mCargoAngle;
-    private double mHatchAngle;
 
     private Double mElevatorGoal;
-    private Double mCargoGoalAngle;
-    private Double mHatchGoalAngle;
 
-    public StandaloneMain(Scene aScene, RobotDisplayController aRobotController)
+    public StandaloneMain(Scene aScene, SuperStructureController aRobotController)
     {
         mRobotController = aRobotController;
         mElevatorHeight = 0;
-        mCargoAngle = 90;
-        mHatchAngle = 0;
 
         aScene.setOnKeyPressed(new EventHandler<KeyEvent>()
         {
@@ -57,28 +50,20 @@ public class StandaloneMain
                     break;
 
                 case A:
-                    mCargoSpeed = -1;
-                    mCargoGoalAngle = 90.0;
+                    mCargoWheelSpeed = -1;
                     break;
                 case D:
-                    mCargoSpeed = 1;
-                    mCargoGoalAngle = 0.0;
+                    mCargoWheelSpeed = 1;
                     break;
 
                 case I:
-                    mHatchArmSpeed = 1;
-                    mHatchGoalAngle = 45.0;
+                    mCargoHasBall = true;
                     break;
                 case K:
-                    mHatchArmSpeed = -1;
-                    mHatchGoalAngle = 20.0;
+                    mHatchVelcro = true;
                     break;
-
                 case J:
-                    mHatchHookSpeed = 1;
-                    break;
-                case L:
-                    mHatchHookSpeed = -1;
+                    mHatchPusher = true;
                     break;
 
                 default:
@@ -105,17 +90,16 @@ public class StandaloneMain
                     break;
                 case A:
                 case D:
-                    mCargoSpeed = 0;
-                    mCargoGoalAngle = null;
+                    mCargoWheelSpeed = 0;
                     break;
                 case I:
+                    mCargoHasBall = false;
+                    break;
                 case K:
-                    mHatchArmSpeed = 0;
-                    mHatchGoalAngle = null;
+                    mHatchVelcro = false;
                     break;
                 case J:
-                case L:
-                    mHatchHookSpeed = 0;
+                    mHatchPusher = false;
                     break;
                 default:
                     // ignored
@@ -129,16 +113,10 @@ public class StandaloneMain
     private void handleUpdate()
     {
         mElevatorHeight += mElevatorSpeed * .8;
-        mCargoAngle += mCargoSpeed * 1;
-        mHatchAngle += mHatchArmSpeed * 1;
-
-        mHatchLefthHookPosition += mHatchHookSpeed *= 1;
-        mHatchRighthHookPosition += mHatchHookSpeed *= 1.2;
 
         mRobotController.setElevatorData(mElevatorHeight, mElevatorSpeed, mElevatorGoal);
-        mRobotController.setCargoData(mCargoAngle, mCargoSpeed, .5, mCargoGoalAngle);
-        mRobotController.setHatchAquisitionData(mHatchAngle, mHatchArmSpeed, mHatchGoalAngle, mHatchHookSpeed, mHatchLefthHookPosition,
-                -mHatchHookSpeed, mHatchRighthHookPosition);
+        mRobotController.setCargoData(mCargoWheelSpeed, mCargoHasBall);
+        mRobotController.setHatchAquisitionData(mHatchVelcro, mHatchPusher);
     }
 
 
@@ -148,9 +126,9 @@ public class StandaloneMain
         @Override
         public void start(Stage aPrimaryStage) throws IOException
         {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("robot_display.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("super_structure_display.fxml"));
             Pane root = loader.load();
-            RobotDisplayController robotCotroller = loader.getController();
+            SuperStructureController robotCotroller = loader.getController();
 
             Scene scene = new Scene(root);
             aPrimaryStage.setScene(scene);

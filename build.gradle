@@ -16,7 +16,7 @@ repositories {
 
 ext {
     shuffleboard_version = "2019.3.1";
-    publishing_version = "1.0.0";
+    publishing_version = "3.0.0";
     publishing_url = "${rootDir}/build/publishing"
 }
 

@@ -4,21 +4,17 @@
 <?import javafx.scene.Group?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Arc?>
 <?import java.lang.Double?>
 
 <Pane fx:id="mPane" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.xcats.deep_space.sd_widgets.controllers.SuperStructureController">
     <fx:define>
         <Double fx:id="ELEVATOR_MAX_HEIGHT"  fx:value="70.0"/>
         <Double fx:id="ELEVATOR_WIDTH"  fx:value="3"/>
-        
-        <Double fx:id="CARGO_HEIGHT"  fx:value="3.0"/>
-        <Double fx:id="CARGO_WIDTH"  fx:value="20.0"/>
-        <Double fx:id="CARGO_ROLLER_RADIUS"  fx:value="1.5"/>
-        <Double fx:id="CARGO_ELEVATOR_OFFSET"  fx:value="20"/>
-        
-        <Double fx:id="HATCH_HEIGHT"  fx:value="3.0"/>
-        <Double fx:id="HATCH_WIDTH"  fx:value="5.0"/>
-        <Double fx:id="HATCH_ELEVATOR_OFFSET"  fx:value="17"/>
+
+        <Double fx:id="CARGO_ROLLER_RADIUS"  fx:value="3"/>
+        <Double fx:id="BALL_RADIUS"  fx:value="6.25"/>
+        <Double fx:id="CARGO_SHELL_RADIUS"  fx:value="13.5"/>
     </fx:define>
     
     <children>
@@ -26,11 +22,21 @@
             <children>
                 <Rectangle fx:id="mElevator" x="0" y="0" width="$ELEVATOR_WIDTH" height="$ELEVATOR_MAX_HEIGHT" />
                 <Rectangle fx:id="mElevatorGoal" x="0" y="0" width="$ELEVATOR_WIDTH" height="$ELEVATOR_MAX_HEIGHT"/>
-                <Rectangle fx:id="mCargoAquisition" x="$ELEVATOR_WIDTH" y="0" width="$CARGO_WIDTH" height="$CARGO_HEIGHT"/>
-                <Rectangle fx:id="mCargoAquisitionGoal" x="$ELEVATOR_WIDTH" y="0" width="$CARGO_WIDTH" height="$CARGO_HEIGHT"/>
-                <Rectangle fx:id="mHatchAquisition" x="$ELEVATOR_WIDTH" y="0" width="$HATCH_WIDTH" height="$HATCH_HEIGHT"/>
-                <Rectangle fx:id="mHatchAquisitionGoal"  x="$ELEVATOR_WIDTH" y="0" width="$HATCH_WIDTH" height="$HATCH_HEIGHT"/>
-                <Circle fx:id="mCargoRollers" radius="$CARGO_ROLLER_RADIUS" />
+                <Circle fx:id="mCargoRollers" radius="$CARGO_ROLLER_RADIUS" centerX="$CARGO_SHELL_RADIUS" />
+                <Circle fx:id="mHasCargoIndicator" layoutX="-6.25" layoutY="-6.25" radius="$BALL_RADIUS" centerX="$CARGO_SHELL_RADIUS" stroke="BLACK" fill="ORANGE"/>
+
+                <Rectangle fx:id="mHatchVelcro" x="$CARGO_SHELL_RADIUS" y="0" width="6" height="1" layoutY="0" fill="RED"/>
+                <Rectangle fx:id="mHatchDeploy" x="$CARGO_SHELL_RADIUS" y="0" width="6" height="1" layoutY="-4" fill="GREEN"/>
+                <Arc fx:id="mCargoStructure"
+                     fill="TRANSPARENT"
+                     stroke="BLACK"
+                     startAngle="90"
+                     length="90.0" 
+                     centerX="$CARGO_SHELL_RADIUS" 
+                     centerY="20" 
+                     radiusX="$CARGO_SHELL_RADIUS" 
+                     radiusY="$CARGO_SHELL_RADIUS"
+                     type="ROUND" />
             </children>
         </Group>
     </children>
